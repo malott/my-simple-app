@@ -1,29 +1,29 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from "redux";
+var mysql = require("mysql");
 
 // actions.js
-export const activateGeod = geod => ({
-  type: 'ACTIVATE_GEOD',
-  geod,
+export const getComic = () => ({
+  type: "ACTIVATE_COMIC",
+  comic
 });
 
-export const closeGeod = () => ({
-  type: 'CLOSE_GEOD',
-});
+export function newComic() {
+  return {
+    type: "comic",
+    payload: "https://imgs.xkcd.com/comics/defensive_profile_2x.png"
+  };
+}
 
 // reducers.js
-export const geod = (state = {}, action) => {
-  switch (action.type) {
-    case 'ACTIVATE_GEOD':
-      return action.geod;
-    case 'CLOSE_GEOD':
-      return {};
-    default:
-      return state;
-  }
+export const comic = (state = {}, action) => {
+  //return "https://imgs.xkcd.com/comics/heat_index_2x.png";
+  return action.payload
+    ? action.payload
+    : "https://imgs.xkcd.com/comics/heat_index_2x.png";
 };
 
 export const reducers = combineReducers({
-  geod,
+  comic
 });
 
 // store.js
